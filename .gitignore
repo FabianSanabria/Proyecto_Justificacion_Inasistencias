@@ -1,8 +1,5 @@
 frontend/node_modules/
 frontend/.env
-frontend/client/node_modules/
-frontend/client/build/
-frontend/client/.env
 backend/venv/
 backend/db.sqlite3
 
