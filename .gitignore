@@ -1,0 +1,12 @@
+frontend/node_modules/
+frontend/.env
+frontend/client/node_modules/
+frontend/client/build/
+frontend/client/.env
+frontend/client/package-lock.json
+backend/venv/
+backend/db.sqlite3
+backend/
+
+
+
