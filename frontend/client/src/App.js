@@ -6,6 +6,8 @@ import DashboardPage from "containers/Dashboard";
 import LoginPage from "containers/LoginPage";
 import RegisterPage from "containers/RegisterPage";
 import MenuLogged from "containers/MenuLogged";
+import PortalEstudiantes from "containers/PortalEstudiantes";
+import Test from "containers/Test"
 import {useDispatch } from "react-redux";
 
 
@@ -27,6 +29,8 @@ const App = () => {
             <Route path='/login' element={<LoginPage/>}/>  
             <Route path='/register' element={<RegisterPage/>}/>  
             <Route path='/menu' element={<MenuLogged/>}/>  
+            <Route path='/test' element={<Test/>}/>  
+            <Route path='/estudiantes' element={<PortalEstudiantes/>}/>  
 
         </Routes>
       </Router>

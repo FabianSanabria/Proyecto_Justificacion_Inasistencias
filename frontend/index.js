@@ -8,6 +8,8 @@ const meRoute = require('./routes/auth/me');
 const loginRoute = require('./routes/auth/login');
 const logoutRoute = require('./routes/auth/logout');
 const verifyRoute = require('./routes/auth/verify');
+const carrerasRoute = require('./routes/carreras')
+
 
 const app = express();
 app.use(express.json());
@@ -18,6 +20,7 @@ app.use(meRoute);
 app.use(loginRoute);
 app.use(logoutRoute);
 app.use(verifyRoute);
+app.use(carrerasRoute);
 
 
 

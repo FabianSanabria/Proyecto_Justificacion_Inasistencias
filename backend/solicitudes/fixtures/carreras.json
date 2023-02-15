@@ -1,0 +1,16 @@
+[
+    {
+      "model": "solicitudes.carrera",
+      "pk": 1,
+      "fields": {
+        "nombreCarrera": "Ingeniería Civíl Metalurgia"
+      }
+    },
+    {
+        "model": "solicitudes.carrera",
+        "pk": 2,
+        "fields": {
+          "nombreCarrera": "Ingeniería Civíl Minas"
+        }
+    }
+  ] 

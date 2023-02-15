@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import  BaseUserManager, AbstractBaseUser, PermissionsMixin
-
+from solicitudes.models import Carrera
 
 class UserAccountManager(BaseUserManager):
         
-    def create_user(self, correo,nombreCompleto,tipo, password=None):
+    def create_user(self, correo,nombreCompleto,tipo, carrera, password=None):
         """
         Crea un usuario a partir del nombre.
         """
@@ -13,6 +13,7 @@ class UserAccountManager(BaseUserManager):
             nombreCompleto = nombreCompleto,
             correo= correo,
             tipo = tipo,
+            carrera = carrera,
 
         )
         user.set_password(password)
@@ -20,7 +21,7 @@ class UserAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, correo, nombreCompleto, password=None):
+    def create_superuser(self, correo, nombreCompleto,carrera, password=None):
         """
         Crea administrador a partir de correo, nombre y password.
         """
@@ -34,13 +35,14 @@ class UserAccountManager(BaseUserManager):
             nombreCompleto,
             correo,
             password,
+            carrera,
             tipo = 0, #tipo 0 es admin
         )
         
         user.save(using=self._db)
         return user
     
-    def create_encargado(self,correo,nombreCompleto,password=None):
+    def create_encargado(self,correo,nombreCompleto,carrera,password=None):
         """
         Crea Encargado/Jefe de Carrera a partir de correo, nombre y password.
         """
@@ -54,32 +56,21 @@ class UserAccountManager(BaseUserManager):
             correo = correo,
             nombreCompleto = nombreCompleto,
             tipo = 1,           #tipo 1 es Encargado/Jefe de Carrera
+            carrera = carrera,
             password = password,
         )
 
         user.save(using=self._db)
         return user
 
-    def create_alumno(self,correo,nombreCompleto,password=None):
-        """
-        Crea alumno a partir de correo, rut y nombre.
-        """
-        user = self.create_user(
-            nombreCompleto,
-            correo,
-            password,
-            tipo = 2,           #tipo 2 es Alumno
-        )
-    
-        user.save(using=self._db)
-        return user
+
 
 class User(AbstractBaseUser, PermissionsMixin):
 
     nombreCompleto = models.CharField(max_length= 255)
     tipo = models.IntegerField()
-    correo = models.EmailField(unique=True)
-    carrera = models.CharField(max_length=100, null= True)
+    correo = models.EmailField(unique=True) 
+    carrera = models.ForeignKey(Carrera, null= True,on_delete=models.SET_NULL)
 
     objects = UserAccountManager()
     

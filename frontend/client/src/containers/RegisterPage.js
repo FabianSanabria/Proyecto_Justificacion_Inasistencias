@@ -2,12 +2,17 @@ import Layout from "components/Layout";
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-
+import { useGetCarrerasQuery } from "features/carrerasData";
+import Select from 'react-select';
+import React from 'react';
 import { register } from "features/user";
 
 
 const RegisterPage = () => {
 
+    const {data} = useGetCarrerasQuery();
+    const optionsCarreras = data;
+    const [carrera, setCarrera] = useState(null);
 
     const dispatch = useDispatch();
     const {registered, loading } = useSelector(state => state.user);
@@ -16,17 +21,19 @@ const RegisterPage = () => {
         nombreCompleto: '',
         correo: '',
         password: ''
+
     });
 
-    const {nombreCompleto,correo,password} = formData;
-
+    const {nombreCompleto,correo,password} = formData; 
     const onChange = e => {
         setFormData({...formData,[e.target.name]: e.target.value});
     }
 
     const onSubmit = e => {
         e.preventDefault();
-        dispatch(register({nombreCompleto,correo,password}));
+        const nombreCarrera = carrera.nombreCarrera;
+        console.log(nombreCarrera);
+        dispatch(register({nombreCompleto,correo,password,nombreCarrera}));
 
     }
 
@@ -87,6 +94,24 @@ const RegisterPage = () => {
       htmlFor="password" 
       className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
       >Password</label>
+  </div>
+  <div >
+     <label htmlFor="carrera"
+     className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 text-gray-500  appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+     >Ingrese Carrera</label>
+     <Select 
+        name="carrera"
+        id="carrera"
+        options={optionsCarreras}
+        isSearchable={false}
+        placeholder="..." 
+        value={carrera}
+        onChange={setCarrera}
+        getOptionLabel={(optionsCarreras) => optionsCarreras.nombreCarrera}
+        getOptionValue={(optionsCarreras) => optionsCarreras.nombreCarrera} // It should be unique value in the options. E.g. ID
+        
+      />
+
   </div>
   </div>
     {loading ? (

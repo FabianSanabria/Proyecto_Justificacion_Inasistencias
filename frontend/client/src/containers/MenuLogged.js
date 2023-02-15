@@ -28,7 +28,7 @@ const MenuLogged = () => {
         <div className="pt-16">
         <div className="pt-16">
             <h1 className="ml-20">
-                Bienvenido {user.nombreCompleto}
+                Bienvenido/a    {user.nombreCompleto}
             </h1>
             <div className="ml-5 pt-16 columns-2">
             <button className=" w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-10 px-4 border border-blue-700 rounded">

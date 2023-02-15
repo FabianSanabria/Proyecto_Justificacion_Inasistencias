@@ -4,13 +4,15 @@ const fetch = (...args) =>
 const router = express.Router();
 
 router.post('/api/users/register', async (req, res) => {
-    const { nombreCompleto, correo, password } = req.body;
+    const { nombreCompleto, correo, password,nombreCarrera } = req.body;
     
     const body = JSON.stringify({
         nombreCompleto,
         correo,
         password,
+        nombreCarrera,
     });
+    console.log(body);
     try{
         
          const resgisterRes = await fetch(

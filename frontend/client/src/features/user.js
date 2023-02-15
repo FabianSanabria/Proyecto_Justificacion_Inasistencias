@@ -21,15 +21,16 @@ const getUser = createAsyncThunk('users/me', async (_, thunkAPI) =>{
     }
 })
 
-
+  
 export const register = createAsyncThunk(
-  'users/register', async ({nombreCompleto,correo,password},thunkAPI) => {
+  'users/register', async ({nombreCompleto,correo,password,nombreCarrera},thunkAPI) => {
     const body =JSON.stringify({
       nombreCompleto,
       correo,
       password,
+      nombreCarrera,
     });
-    
+    console.log(body);
     try{
       const res = await fetch('/api/users/register',{
         method: 'POST',
