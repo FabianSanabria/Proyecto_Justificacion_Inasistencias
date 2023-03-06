@@ -9,7 +9,7 @@ router.get('/api/users/verify', async (req,res) => {
         token: access
     });
     try{
-        const apiRes = await fetch(`${process.env.API_URL}/api/token/verify/`,{
+        const apiRes = await fetch(`${process.env.API_URL}/apiDjango/token/verify/`,{
             method: 'POST',
             headers:{
                 Accept: 'application/json', 

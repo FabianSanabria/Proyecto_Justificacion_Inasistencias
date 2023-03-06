@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/api/carreras', async (req,res) => {
     
     try{
-        const apiRes = await fetch(`${process.env.API_URL}/api/solicitudes/carreras`,{
+        const apiRes = await fetch(`${process.env.API_URL}/apiDjango/solicitudes/carreras`,{
             method: 'GET',
             headers:{
                 Accept: 'application/json',

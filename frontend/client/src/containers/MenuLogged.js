@@ -1,14 +1,36 @@
 import Layout from "components/Layout";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { getSolicitudesPendientesEncargado,getSolicitudesCompletadasEncargado } from "features/solicitud";
+import { useState } from "react";
 const MenuLogged = () => {
 
     const {isAuthenticated,user, loading} = useSelector(state => state.user);
-    if(!isAuthenticated && !loading && user === null){
+    const mensaje = useSelector(state=> state.solicitudHandler.mensaje);
+    const solicitudes = useSelector(state=> state.solicitudHandler.solicitudes);
+    const solicitudesPendientes = useSelector(state => state.solicitudHandler.solicitudesPendientes);
+    const solicitudesCompletadas = useSelector(state => state.solicitudHandler.solicitudesCompletadas);
+
+    const dispatch = useDispatch();
+
+    if(!isAuthenticated || user === null){
         return <Navigate to= '/' />
 
     }
+    const onClick1 = e =>{
+        dispatch(getSolicitudesPendientesEncargado(user.correo))
+    }
+    const onClick2 = e =>{
+        dispatch(getSolicitudesCompletadasEncargado(user.correo))
+    }
+    if (solicitudesPendientes && isAuthenticated && !loading){
+        return <Navigate to= '/menu/solicitudes-pendientes' />
+    }  
+    if (solicitudesCompletadas && isAuthenticated && solicitudes != null){
+        return <Navigate to= '/menu/solicitudes-completadas' />
+    }  
+
 
     return(
 
@@ -27,14 +49,17 @@ const MenuLogged = () => {
             <div className="pt-16">   
         <div className="pt-16">
         <div className="pt-16">
-            <h1 className="ml-20">
+           {mensaje && <div role="alert" className="ml-5 p-4 mb-4 text-sm text-green-900 rounded-lg bg-green-100 ">
+                 {mensaje}
+            </div>}
+            <h1 className="ml-20 font-bold">
                 Bienvenido/a    {user.nombreCompleto}
             </h1>
             <div className="ml-5 pt-16 columns-2">
-            <button className=" w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-10 px-4 border border-blue-700 rounded">
+            <button onClick={() => onClick1()} className=" w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-10 px-4 border border-blue-700 rounded">
             REVISAR SOLICITUDES PENDIENTES
             </button>
-            <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-10 px-4 border border-blue-700 rounded">
+            <button onClick={() => onClick2()} className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-10 px-4 border border-blue-700 rounded">
             REVISAR SOLICITUDES COMPLETADAS
             </button>
             </div>

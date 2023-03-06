@@ -1,8 +1,17 @@
 import Layout from "components/Layout";
 import { Link } from "react-router-dom";
+import { reset } from "features/solicitud";
+import { resetError } from "features/user";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Home = () => {
-
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(reset());
+        dispatch(resetError());
+    },[])
+    
 
     
     return(

@@ -4,19 +4,19 @@ const fetch = (...args) =>
 const router = express.Router();
 
 router.post('/api/users/register', async (req, res) => {
-    const { nombreCompleto, correo, password,nombreCarrera } = req.body;
+    const { nombreCompleto, correo, password,carreras } = req.body;
     
     const body = JSON.stringify({
         nombreCompleto,
         correo,
         password,
-        nombreCarrera,
+        carreras,
     });
     console.log(body);
     try{
         
          const resgisterRes = await fetch(
-            `${process.env.API_URL}/api/users/register`,
+            `${process.env.API_URL}/apiDjango/users/register`,
             {
             method: 'POST',
             headers: 

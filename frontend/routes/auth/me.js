@@ -7,7 +7,7 @@ router.get('/api/users/me', async (req,res) => {
     const {access} = req.cookies;
 
     try{
-        const apiRes = await fetch(`${process.env.API_URL}/api/users/me`,{
+        const apiRes = await fetch(`${process.env.API_URL}/apiDjango/users/me`,{
             method: 'GET',
             headers:{
                 Accept: 'application/json',

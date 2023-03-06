@@ -11,7 +11,7 @@ router.post('/api/users/login', async (req, res) =>{
     const body = JSON.stringify({correo, password});
     try{
         
-        const apiRes = await fetch(`${process.env.API_URL}/api/token/`, {
+        const apiRes = await fetch(`${process.env.API_URL}/apiDjango/token/`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

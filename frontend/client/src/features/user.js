@@ -23,12 +23,12 @@ const getUser = createAsyncThunk('users/me', async (_, thunkAPI) =>{
 
   
 export const register = createAsyncThunk(
-  'users/register', async ({nombreCompleto,correo,password,nombreCarrera},thunkAPI) => {
+  'users/register', async ({nombreCompleto,correo,password,carreras},thunkAPI) => {
     const body =JSON.stringify({
       nombreCompleto,
       correo,
       password,
-      nombreCarrera,
+      carreras,
     });
     console.log(body);
     try{
@@ -79,7 +79,6 @@ export const login = createAsyncThunk(
         
         return data;
       }else{
-
         return thunkAPI.rejectWithValue(data);
       }
 
@@ -143,7 +142,6 @@ const initialState = {
   user: null,
   loading: false,
   registered: false,
-
 };
 const userSlice = createSlice({
   name: 'user',
@@ -151,6 +149,9 @@ const userSlice = createSlice({
   reducers: {
     resetRegistered: state => {
       state.registered = false;
+    },
+    resetError: state => {
+      state.error = null;
     }
     
   },
@@ -158,17 +159,21 @@ const userSlice = createSlice({
     builder
       .addCase(register.pending, state => {
         state.loading = true;
-    }).addCase(register.fulfilled, state =>{
+    }).addCase(register.fulfilled, (state,action) =>{
         state.registered = true;
         state.loading = false;
-    }).addCase(register.rejected, state =>{
+    }).addCase(register.rejected, (state,action) =>{
       state.loading = false;
+      state.error = action.payload;
     }).addCase(login.pending, state => {
       state.loading = true;
+      state.error = null;
+      state.mensaje = null;
     }).addCase(login.fulfilled, state => {
       state.loading = false;
       state.isAuthenticated = true;
     }).addCase(login.rejected, state => {
+      state.error = "Ha ocurrido un error al iniciar sesión, compruebe que haya ingresado bien sus credenciales";
       state.loading = false;
     }).addCase(getUser.pending, state => {
       state.loading = true;
@@ -198,5 +203,5 @@ const userSlice = createSlice({
   }
 });
 
-export const { resetRegistered,} = userSlice.actions;
+export const { resetRegistered,resetError} = userSlice.actions;
 export default userSlice.reducer;

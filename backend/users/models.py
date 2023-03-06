@@ -4,7 +4,7 @@ from solicitudes.models import Carrera
 
 class UserAccountManager(BaseUserManager):
         
-    def create_user(self, correo,nombreCompleto,tipo, carrera, password=None):
+    def create_user(self, correo,nombreCompleto,tipo ,password=None):
         """
         Crea un usuario a partir del nombre.
         """
@@ -13,7 +13,6 @@ class UserAccountManager(BaseUserManager):
             nombreCompleto = nombreCompleto,
             correo= correo,
             tipo = tipo,
-            carrera = carrera,
 
         )
         user.set_password(password)
@@ -42,7 +41,7 @@ class UserAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
     
-    def create_encargado(self,correo,nombreCompleto,carrera,password=None):
+    def create_encargado(self,correo,nombreCompleto,password=None):
         """
         Crea Encargado/Jefe de Carrera a partir de correo, nombre y password.
         """
@@ -56,7 +55,6 @@ class UserAccountManager(BaseUserManager):
             correo = correo,
             nombreCompleto = nombreCompleto,
             tipo = 1,           #tipo 1 es Encargado/Jefe de Carrera
-            carrera = carrera,
             password = password,
         )
 
@@ -70,7 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     nombreCompleto = models.CharField(max_length= 255)
     tipo = models.IntegerField()
     correo = models.EmailField(unique=True) 
-    carrera = models.ForeignKey(Carrera, null= True,on_delete=models.SET_NULL)
+    carreras = models.ManyToManyField(Carrera)
 
     objects = UserAccountManager()
     

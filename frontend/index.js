@@ -8,8 +8,9 @@ const meRoute = require('./routes/auth/me');
 const loginRoute = require('./routes/auth/login');
 const logoutRoute = require('./routes/auth/logout');
 const verifyRoute = require('./routes/auth/verify');
-const carrerasRoute = require('./routes/carreras')
-
+const carrerasRoute = require('./routes/carreras');
+const createSolicitudRoute = require('./routes/solicitudes/create');
+const RetrieveSolicitudesPendientes = require('./routes/solicitudes/RetrieveSolicitudesPendientes');
 
 const app = express();
 app.use(express.json());
@@ -21,7 +22,8 @@ app.use(loginRoute);
 app.use(logoutRoute);
 app.use(verifyRoute);
 app.use(carrerasRoute);
-
+app.use(createSolicitudRoute);
+app.use(RetrieveSolicitudesPendientes);
 
 
 
