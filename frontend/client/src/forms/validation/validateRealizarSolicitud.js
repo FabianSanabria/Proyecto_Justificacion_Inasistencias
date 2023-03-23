@@ -27,6 +27,8 @@ export default function validateRealizarSolicitud(values){
     if(values.motivo == "Médico"){
         if(!values.nroFolio){
             errors.nroFolio = "Ingrese número de folio"
+        }else if (values.nroFolio.length > 10) {
+            errors.nroFolio = 'Password tiene que tener menos de 10 caracteres';
         }
     }
     if(!values.carrera){

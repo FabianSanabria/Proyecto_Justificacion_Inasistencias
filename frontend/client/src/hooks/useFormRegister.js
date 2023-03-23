@@ -16,7 +16,6 @@ const useFormLogin = (callback,validate) =>{
     const [isSubmitting, setIsSubmitting] = useState(false);
     const handleChange = e =>{
         if(e.target == undefined){
-            console.log(e)
             setValues({
                 ...values,
                 carreras: e,

@@ -26,13 +26,11 @@ const SolicitudesPendientes = () => {
         }
       }
     }
-    console.log(indexFiltro)
     if(indexFiltro != 0){
       if(solicitudes!=null){
         solicitudes = solicitudes.filter(solicitud => solicitud.carrera == indexFiltro);
       }
     }
-    console.log(solicitudes)
     if(detallesPendiente && !loading) return <Navigate to="/menu/solicitudes-pendientes/detalle"/>;
     if(solicitudes == null && volver) return <Navigate to="/menu"/>;
     if(solicitudes == null ) return <Navigate to="/menu"/>;

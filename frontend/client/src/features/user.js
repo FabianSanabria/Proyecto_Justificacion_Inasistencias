@@ -30,7 +30,6 @@ export const register = createAsyncThunk(
       password,
       carreras,
     });
-    console.log(body);
     try{
       const res = await fetch('/api/users/register',{
         method: 'POST',

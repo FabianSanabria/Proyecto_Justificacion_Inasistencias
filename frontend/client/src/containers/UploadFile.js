@@ -48,7 +48,8 @@ const UploadFile = () => {
             <form onSubmit={handleUploadClick} className="top-0" encType="multipart/form-data">
             <label className="text-sm font-bold">
             Subir archivo visado por DGE o imagen con autorización de justificación por parte del jefe de carrera, por evento de fuerza mayor (solo se admite formato PDF)      </label>
-            
+            <label className="text-sm font-bold text-red-500">
+            Aviso: Si cierra la ventana o sale de esta tendrá que ingresar datos nuevamente      </label>
         <div className='flex items-baseline space-x-5 text-sm mt-4' > 
         <input
           id="file"

@@ -226,7 +226,7 @@ router.post('/api/solicitud/subir-archivo',upload.single("file"), async (req, re
         
 
         const subirArchivoRes = await fetch(
-           `${process.env.API_URL}/api/solicitudes/subir-archivo`,
+           `${process.env.API_URL}/apiDjango/solicitudes/subir-archivo`,
            {
            method: 'POST',
            headers: 
