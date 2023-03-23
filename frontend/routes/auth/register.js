@@ -12,7 +12,6 @@ router.post('/api/users/register', async (req, res) => {
         password,
         carreras,
     });
-    console.log(body);
     try{
         
          const resgisterRes = await fetch(
