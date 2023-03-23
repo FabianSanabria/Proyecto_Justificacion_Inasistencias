@@ -41,7 +41,7 @@ const App = () => {
             <Route path='/' element={<Home/>}/>  
             <Route path='/dashboard' element={<DashboardPage/>}/>  
             <Route path='/login' element={<LoginPage/>}/>  
-            <Route path='/7s2d06+vVc9JB/pxSSEtHvQrAaq8aZJuvGMJ3Lp2dyM=' element={<RegisterPage/>}/>  
+            <Route path='/7s2d06+vVc9JBpxSSEtHvQrAaq8aZJuvGMJ3Lp2dyM=' element={<RegisterPage/>}/>  
             <Route path='/menu' element={<MenuLogged/>}/> 
             <Route path='/menu/solicitudes-pendientes/' element={<SolicitudesPendientes/>}/> 
             <Route path='/menu/solicitudes-pendientes/detalle' element={<DetalleSolicitudPendiente/>}/> 
