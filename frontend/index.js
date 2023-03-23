@@ -10,7 +10,7 @@ const logoutRoute = require('./routes/auth/logout');
 const verifyRoute = require('./routes/auth/verify');
 const carrerasRoute = require('./routes/carreras');
 const createSolicitudRoute = require('./routes/solicitudes/create');
-const RetrieveSolicitudesPendientes = require('./routes/solicitudes/RetrieveSolicitudesPendientes');
+const RetrieveSolicitudesPendientes = require('./routes/solicitudes/retrieveSolicitudesPendientes');
 
 const app = express();
 app.use(express.json());
