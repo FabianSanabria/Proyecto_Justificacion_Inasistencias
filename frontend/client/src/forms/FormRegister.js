@@ -15,12 +15,10 @@ const FormRegister = (submitForm) =>{
     const [submitted,setSubmitted] = useState(false);
     const submit = e =>{
         e.preventDefault()
-
     }
     const handleSelect = (e) =>{
         setCarreras(e)
         handleChange(e)
-
     }
     return(
 <form className="mt-60 w-5/6 m-8" onSubmit={handleSubmit}>

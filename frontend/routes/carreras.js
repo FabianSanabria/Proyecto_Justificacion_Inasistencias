@@ -17,7 +17,7 @@ router.get('/api/carreras', async (req,res) => {
 
     }catch(err){
         return res.status(500).json({
-            error: 'Something went wrong when trying to retrieve the user'
+            error: err,
         });
 
     }

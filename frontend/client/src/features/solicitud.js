@@ -311,7 +311,6 @@ export const ramosSolicitudEncargado = createAsyncThunk('solicitud/ObtenerRamosE
   }catch(err){
     console.log(err);
     return thunkAPI.rejectWithValue(err.resonse.data);
-
   }
 })
 export const ramosSolicitudCompletadaEncargado = createAsyncThunk('solicitud/ObtenerRamosSolicitudCompletadaEncargado', async (solicitud_id, thunkAPI) =>{
@@ -322,7 +321,6 @@ export const ramosSolicitudCompletadaEncargado = createAsyncThunk('solicitud/Obt
         Accept: 'application/json'
       },
     });
-    
     const data = await res.json();
     if(res.status===200){
       return data;
